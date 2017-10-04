@@ -2,28 +2,28 @@ extern crate sha1;
 
 pub struct Node
 {
-	blockchain: Vec<u64>,
+    blockchain: Vec<u64>,
 }
 
 impl Node
 {
-	pub fn new() -> Node
-	{
-		Node{blockchain: vec![]}
-	}
+    pub fn new() -> Node
+    {
+        Node{blockchain: vec![]}
+    }
 
-	pub fn run(&mut self)
-	{
-		println!("Node running!");
+    pub fn run(&mut self)
+    {
+        println!("Node running!");
 
-		for i in 0u32..10u32
-		{
-			let mut m = sha1::Sha1::new();
-    		m.update(&u32_to_u8_array(i));
-    		println!("Hash: {}", m.digest().to_string());
-    		self.blockchain.push(i as u64);
-		}
-	}
+        for i in 0u32..10u32
+        {
+            let mut m = sha1::Sha1::new();
+            m.update(&u32_to_u8_array(i));
+            println!("Hash: {}", m.digest().to_string());
+            self.blockchain.push(i as u64);
+        }
+    }
 }
 
 fn u32_to_u8_array(x:u32) -> [u8;4] {
