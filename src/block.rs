@@ -8,7 +8,7 @@ use std::fmt::Write;
 pub struct Block {
     index: u32,
     timestamp: u64,
-    proof: u64,
+    nonce: u64,
     #[serde(with = "serde_bytes")]
     pub parent: [u8; 32],
     #[serde(with = "serde_bytes")]
@@ -22,7 +22,7 @@ impl Block
         Block{
             index: 0,
             timestamp: 0,
-            proof: 0,
+            nonce: 0,
             parent: [0;32],
             payload: payload
         }
@@ -41,11 +41,12 @@ impl Block
     }
 
     pub fn proof_of_work(&mut self) {
-        self.proof = 0;
+        self.nonce = 0;
         while &self.hash()[..2] != [0; 2]
         {
-            self.proof += 1;
+            self.nonce += 1;
         }
+        println!("Found block at nonce: {}", self.nonce);
     }
 
     pub fn print(&self)

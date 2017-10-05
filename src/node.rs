@@ -9,12 +9,12 @@ impl Node
 {
     pub fn new() -> Node
     {
-        Node{blockchain: chain::Blockchain::new(vec![0])}
+        Node{blockchain: chain::Blockchain::new()}
     }
 
-    pub fn run(&mut self)
+    pub fn mine(&mut self)
     {
-        println!("Node running!");
+        println!("Start mining");
 
         for _ in 0..10
         {

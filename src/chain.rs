@@ -7,13 +7,18 @@ pub struct Blockchain {
 
 impl Blockchain {
 
-    pub fn new(payload: Vec<u8>) -> Blockchain {
+    pub fn new() -> Blockchain {
         let mut result = Blockchain {
             blocks: LinkedList::new()
         };
 
-        result.blocks.push_back(block::Block::new(payload));
-        return result;
+        result.init_genesis_block();
+        result
+    }
+
+    fn init_genesis_block(&mut self)
+    {
+        self.blocks.push_back(block::Block::new(vec![]))
     }
 
     pub fn print(&self)

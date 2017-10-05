@@ -11,5 +11,5 @@ mod chain;
 
 fn main() {
     let mut node = node::Node::new();
-    node.run();
+    node.mine();
 }
