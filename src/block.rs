@@ -2,7 +2,6 @@ use bincode::serialize;
 use bincode::Infinite;
 use crypto_hash::{Algorithm, digest};
 use serde_bytes;
-use std;
 use std::fmt::Write;
 
 #[derive(Serialize)]

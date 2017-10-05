@@ -25,17 +25,13 @@ impl Blockchain {
     }
 
     pub fn new_block(&mut self, payload: Vec<u8>) {
-        let mut newBlock = block::Block::new(payload);
-        newBlock.parent = match self.blocks.back() {
+        let mut new_block = block::Block::new(payload);
+        new_block.parent = match self.blocks.back() {
             Some(x) => x.hash(),
             None => [0; 32]
         };
         
-        newBlock.proof_of_work();
-        self.blocks.push_back(newBlock);
-    }
-
-    fn new_transaction() {
-
+        new_block.proof_of_work();
+        self.blocks.push_back(new_block);
     }
 }

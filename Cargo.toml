@@ -4,7 +4,6 @@ version = "0.1.0"
 authors = ["Carsten Walther <carsten.walther@student.hpi.de>"]
 
 [dependencies]
-sha1 = "0.2.0"
 crypto-hash = "0.3.0"
 serde = "1.0.15"
 serde_derive = "1.0.15"
