@@ -29,7 +29,7 @@ impl Blockchain {
         }
     }
 
-    fn validate(&self, block: &block::Block) -> bool
+    fn validate(&self, _block: &block::Block) -> bool
     {
         // TODO: implement
         true

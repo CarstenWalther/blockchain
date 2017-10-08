@@ -3,6 +3,7 @@ use bincode::Infinite;
 use crypto_hash::{Algorithm, digest};
 use serde_bytes;
 use std::fmt::Write;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Serialize)]
 pub struct Block {
@@ -19,13 +20,20 @@ impl Block
 {
     pub fn new(payload: Vec<u8>) -> Block
     {
+        
         Block{
             index: 0,
-            timestamp: 0,
+            timestamp: Block::get_current_time(),
             nonce: 0,
             parent: [0;32],
             payload: payload
         }
+    }
+
+    fn get_current_time() -> u64 
+    {
+        let current_time = SystemTime::now().duration_since(UNIX_EPOCH).expect("Time went backwards");
+        current_time.as_secs() * 1000 + current_time.subsec_nanos() as u64 / 1_000_000
     }
 
     pub fn hash(&self) -> [u8;32]
@@ -54,7 +62,7 @@ impl Block
         let mut s = String::new();
         for byte in self.hash().to_vec()
         {
-            write!(&mut s, "{:X} ", byte).expect("Unable to write");
+            write!(&mut s, "{:02X} ", byte).expect("Unable to write");
         }
         println!("Hash: {}", s);
     }
