@@ -24,8 +24,10 @@ impl Blockchain {
     }
 
     fn validate(&self, _block: &block::Block) -> bool {
-        // TODO: implement
-        true
+        match self.blocks.back() {
+            None => return false,
+            Some(last_block) => return _block.parent != last_block.hash(),
+        }
     }
 
     pub fn add_block(&mut self, block: block::Block) {
